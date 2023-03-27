@@ -64,7 +64,7 @@ Vector<Complex> Abssort(Vector<Complex> &v, double lo, double hi) {
     int k = 0;
     Vector<Complex> cv;
     for (Rank i = 0; i < v.size(); i++) {
-        if (lo < v[i].abs() && v[i].abs() <hi)
+        if (lo <= v[i].abs() && v[i].abs() <hi)
             cv.insert(k++, v[i]);
     }
     return cv;
