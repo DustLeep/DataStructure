@@ -1,5 +1,5 @@
 #include "../../vector/vector_fun.h"
-#include <chrono>
+
 
 class Complex {
 protected:
@@ -64,7 +64,7 @@ Vector<Complex> Abssort(Vector<Complex> &v, double lo, double hi) {
     int k = 0;
     Vector<Complex> cv;
     for (Rank i = 0; i < v.size(); i++) {
-        if (lo <= v[i].abs() && v[i].abs() <hi)
+        if (lo <= v[i].abs() && v[i].abs() < hi)
             cv.insert(k++, v[i]);
     }
     return cv;
@@ -102,38 +102,21 @@ int main() {
     complex.deduplicate();
     complex.print();
     complex.sort('m');//b为起泡排序，m为归并排序
-    auto start_b = chrono::steady_clock::now();
-    complex.sort('b');
-    auto end_b = chrono::steady_clock::now();
-    auto time_b = chrono::duration_cast<chrono::nanoseconds>(end_b - start_b).count();
-    auto start_m = chrono::steady_clock::now();
-    complex.sort('m');
-    auto end_m = chrono::steady_clock::now();
-    auto time_m = chrono::duration_cast<chrono::nanoseconds>(end_m - start_m).count();
+    auto time_b = 0, time_m = 0;
+    time_b = complex.sort('b');
+    time_m = complex.sort('m');
     cout << "顺序起泡排序耗时:    " << (double) time_b << "ns" << endl
          << "顺序归并排序耗时:    " << (double) time_m << "ns" << endl;
     complex.reverse();
-    start_b = chrono::steady_clock::now();
-    complex.sort('b');
-    end_b = chrono::steady_clock::now();
-    time_b = chrono::duration_cast<chrono::nanoseconds>(end_b - start_b).count();
+    time_b = complex.sort('b');
     complex.reverse();
-    start_m = chrono::steady_clock::now();
-    complex.sort('m');
-    end_m = chrono::steady_clock::now();
-    time_m = chrono::duration_cast<chrono::nanoseconds>(end_m - start_m).count();
+    time_m = complex.sort('m');
     cout << "逆序起泡排序耗时:    " << time_b << "ns" << endl
          << "逆序归并排序耗时:    " << time_m << "ns" << endl;
     complex.unsort();
     Vector<Complex> bak(complex);
-    start_b = chrono::steady_clock::now();
-    complex.sort('b');
-    end_b = chrono::steady_clock::now();
-    time_b = chrono::duration_cast<chrono::nanoseconds>(end_b - start_b).count();
-    start_m = chrono::steady_clock::now();
-    bak.sort('m');
-    end_m = chrono::steady_clock::now();
-    time_m = chrono::duration_cast<chrono::nanoseconds>(end_m - start_m).count();
+    time_b = complex.sort('b');
+    time_m = bak.sort('m');
     cout << "乱序起泡排序耗时:    " << time_b << "ns" << endl
          << "乱序归并排序耗时:    " << time_m << "ns" << endl;
     cout << "复数模的区间查找，输入格式:<区间下界> <区间上界>" << endl;
