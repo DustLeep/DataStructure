@@ -5,6 +5,7 @@
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
+#include <chrono>
 using Rank = int; //秩
 #define DEFAULT_CAPACITY  3 //默认的初始容量（实际应用中可设置为更大）
 using namespace std;
@@ -60,7 +61,7 @@ public:
     Rank insert(Rank r, T const &e); //插入元素
     Rank insert(T const &e) { return insert(_size, e); } //默认作为末元素插入
     void sort(Rank lo, Rank hi); //对[lo, hi)排序
-    void sort(char x);//整体排序
+    auto sort(char x);//整体排序
     Rank deduplicate(); //无序去重
     void unsort();//置乱
     void reverse();//反转数组

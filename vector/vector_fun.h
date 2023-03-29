@@ -1,6 +1,5 @@
 #include "vector.h"
 
-
 template<typename T>
 void Vector<T>::copyFrom(T const *A, Rank lo, Rank hi) {
     _elem = new T[_capacity = 2 * (hi - lo)];
@@ -132,6 +131,7 @@ void Vector<T>::merge(Rank lo, Rank mi, Rank hi) {
     }
     delete[] B;
 }
+
 template<typename T>
 void Vector<T>::mergeSort(Rank lo, Rank hi) {
     if (hi - lo < 2) return;
@@ -142,15 +142,25 @@ void Vector<T>::mergeSort(Rank lo, Rank hi) {
 }
 
 template<typename T>
-void Vector<T>::sort(char x) {
+auto Vector<T>::sort(char x) {
+    auto time = 0;
     switch (x) {
-        case 'b':
+        case 'b': {
+            auto start_b = chrono::steady_clock::now();
             this->bubbleSort(0, _size);
+            auto end_b = chrono::steady_clock::now();
+            time = chrono::duration_cast<chrono::nanoseconds>(end_b - start_b).count();
             break;
-        case 'm':
+        }
+        case 'm': {
+            auto start_m = chrono::steady_clock::now();
             this->mergeSort(0, _size);
+            auto end_m = chrono::steady_clock::now();
+            time = chrono::duration_cast<chrono::nanoseconds>(end_m - start_m).count();
             break;
+        }
     }
+    return time;
 }
 
 template<typename T>
