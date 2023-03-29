@@ -105,8 +105,8 @@ int main() {
     auto time_b = 0, time_m = 0;
     time_b = complex.sort('b');
     time_m = complex.sort('m');
-    cout << "顺序起泡排序耗时:    " << (double) time_b << "ns" << endl
-         << "顺序归并排序耗时:    " << (double) time_m << "ns" << endl;
+    cout << "顺序起泡排序耗时:    " << time_b << "ns" << endl
+         << "顺序归并排序耗时:    " << time_m << "ns" << endl;
     complex.reverse();
     time_b = complex.sort('b');
     complex.reverse();
