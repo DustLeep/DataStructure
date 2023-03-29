@@ -3,8 +3,8 @@
 
 class Complex {
 protected:
-    double real; // Êµ²¿
-    double imag; // Ðé²¿
+    double real; // å®žéƒ¨
+    double imag; // è™šéƒ¨
 
 public:
     Complex(double r = 0.0, double i = 0.0) {
@@ -73,53 +73,53 @@ Vector<Complex> Abssort(Vector<Complex> &v, double lo, double hi) {
 int main() {
     double a, b;
     Rank i;
-    Vector<Complex> complex(20, 20);
+    Vector<Complex> complex(100, 100);
     Randomize(complex);
-    cout << "Éú³ÉµÄÊý×é:" << endl;
+    cout << "ç”Ÿæˆçš„æ•°ç»„:" << endl;
     complex.print();
     complex.unsort();
-    cout << "ÖÃÂÒºóµÄÊý×é:" << endl;
+    cout << "ç½®ä¹±åŽçš„æ•°ç»„:" << endl;
     complex.print();
-    cout << "²éÕÒ¸´Êý£¬ÊäÈë¸ñÊ½:<Êµ²¿> <Ðé²¿>" << endl;
+    cout << "æŸ¥æ‰¾å¤æ•°ï¼Œè¾“å…¥æ ¼å¼:<å®žéƒ¨> <è™šéƒ¨>" << endl;
     cin >> a >> b;
     Complex key(a, b);
     if (complex.find(key) == -1)
-        cout << "²éÕÒÊ§°Ü!" << endl;
+        cout << "æŸ¥æ‰¾å¤±è´¥!" << endl;
     else
-        cout << "Î»ÓÚÏÂ±ê" << complex.find(key) << endl;
-    cout << "²åÈëÔªËØ£¬ÊäÈë¸ñÊ½:<ÏÂ±ê> <Êµ²¿> <Ðé²¿>" << endl;
+        cout << "ä½äºŽä¸‹æ ‡" << complex.find(key) << endl;
+    cout << "æ’å…¥å…ƒç´ ï¼Œè¾“å…¥æ ¼å¼:<ä¸‹æ ‡> <å®žéƒ¨> <è™šéƒ¨>" << endl;
     cin >> i >> a >> b;
     Complex ins(a, b);
     complex.insert(i, ins);
-    cout << "²åÈëºóµÄÊý×é" << endl;
+    cout << "æ’å…¥åŽçš„æ•°ç»„" << endl;
     complex.print();
-    cout << "ÊäÈë´ýÉ¾³ýµÄÔªËØÏÂ±ê:";
+    cout << "è¾“å…¥å¾…åˆ é™¤çš„å…ƒç´ ä¸‹æ ‡:";
     cin >> i;
     complex.remove(i);
-    cout << "É¾³ýºóµÄÊý×é" << endl;
+    cout << "åˆ é™¤åŽçš„æ•°ç»„" << endl;
     complex.print();
-    cout << "È¥ÖØºóµÄÊý×é" << endl;
+    cout << "åŽ»é‡åŽçš„æ•°ç»„" << endl;
     complex.deduplicate();
     complex.print();
-    complex.sort('m');//bÎªÆðÅÝÅÅÐò£¬mÎª¹é²¢ÅÅÐò
+    complex.sort('m');//bä¸ºèµ·æ³¡æŽ’åºï¼Œmä¸ºå½’å¹¶æŽ’åº
     auto time_b = 0, time_m = 0;
     time_b = complex.sort('b');
     time_m = complex.sort('m');
-    cout << "Ë³ÐòÆðÅÝÅÅÐòºÄÊ±:    " << (double) time_b << "ns" << endl
-         << "Ë³Ðò¹é²¢ÅÅÐòºÄÊ±:    " << (double) time_m << "ns" << endl;
+    cout << "é¡ºåºèµ·æ³¡æŽ’åºè€—æ—¶:    " << (double) time_b << "ns" << endl
+         << "é¡ºåºå½’å¹¶æŽ’åºè€—æ—¶:    " << (double) time_m << "ns" << endl;
     complex.reverse();
     time_b = complex.sort('b');
     complex.reverse();
     time_m = complex.sort('m');
-    cout << "ÄæÐòÆðÅÝÅÅÐòºÄÊ±:    " << time_b << "ns" << endl
-         << "ÄæÐò¹é²¢ÅÅÐòºÄÊ±:    " << time_m << "ns" << endl;
+    cout << "é€†åºèµ·æ³¡æŽ’åºè€—æ—¶:    " << time_b << "ns" << endl
+         << "é€†åºå½’å¹¶æŽ’åºè€—æ—¶:    " << time_m << "ns" << endl;
     complex.unsort();
     Vector<Complex> bak(complex);
     time_b = complex.sort('b');
     time_m = bak.sort('m');
-    cout << "ÂÒÐòÆðÅÝÅÅÐòºÄÊ±:    " << time_b << "ns" << endl
-         << "ÂÒÐò¹é²¢ÅÅÐòºÄÊ±:    " << time_m << "ns" << endl;
-    cout << "¸´ÊýÄ£µÄÇø¼ä²éÕÒ£¬ÊäÈë¸ñÊ½:<Çø¼äÏÂ½ç> <Çø¼äÉÏ½ç>" << endl;
+    cout << "ä¹±åºèµ·æ³¡æŽ’åºè€—æ—¶:    " << time_b << "ns" << endl
+         << "ä¹±åºå½’å¹¶æŽ’åºè€—æ—¶:    " << time_m << "ns" << endl;
+    cout << "å¤æ•°æ¨¡çš„åŒºé—´æŸ¥æ‰¾ï¼Œè¾“å…¥æ ¼å¼:<åŒºé—´ä¸‹ç•Œ> <åŒºé—´ä¸Šç•Œ>" << endl;
     cin >> a >> b;
     bak = Abssort(complex, a, b);
     bak.print();
