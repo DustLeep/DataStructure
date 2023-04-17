@@ -1,58 +1,70 @@
 #include "../../vector/vector_fun.h"
 
-
-class Complex {
+class Complex
+{
 protected:
     double real; // 实部
     double imag; // 虚部
 
 public:
-    Complex(double r = 0.0, double i = 0.0) {
+    Complex(double r = 0.0, double i = 0.0)
+    {
         real = r;
         imag = i;
     }
 
-    double abs() const {
+    double abs() const
+    {
         return sqrt(real * real + imag * imag);
     }
 
-    friend ostream &operator<<(ostream &os, const Complex &c) {
+    friend ostream &operator<<(ostream &os, const Complex &c)
+    {
         return os << c.real << '+' << c.imag << "i";
     }
 
-    bool operator==(const Complex &other) const {
+    bool operator==(const Complex &other) const
+    {
         return ((this->real == other.real) && (this->imag == other.imag));
     }
 
-    bool operator!=(const Complex &other) const {
+    bool operator!=(const Complex &other) const
+    {
         return (this->real != other.real) || (this->imag != other.imag);
     }
 
-    bool operator<(const Complex &c) const {
-        if (abs() == c.abs()) {
+    bool operator<(const Complex &c) const
+    {
+        if (abs() == c.abs())
+        {
             return real < c.real;
         }
         return abs() < c.abs();
     }
 
-    bool operator>(const Complex &c) const {
+    bool operator>(const Complex &c) const
+    {
         return c < *this;
     }
 
-    bool operator<=(const Complex &c) const {
+    bool operator<=(const Complex &c) const
+    {
         return !(c < *this);
     }
 
-    bool operator>=(const Complex &c) const {
+    bool operator>=(const Complex &c) const
+    {
         return !(*this < c);
     }
 };
 
-void Randomize(Vector<Complex> &v) {
+void Randomize(Vector<Complex> &v)
+{
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> dis(0, 100);
-    for (unsigned i = 0; i < v.size(); i++) {
+    for (int i = 0; i < v.size(); i++)
+    {
         double real = double(dis(gen)) / 10.0;
         double imag = double(dis(gen)) / 10.0;
         Complex c(real, imag);
@@ -60,17 +72,20 @@ void Randomize(Vector<Complex> &v) {
     }
 }
 
-Vector<Complex> Abssort(Vector<Complex> &v, double lo, double hi) {
+Vector<Complex> Abssort(Vector<Complex> &v, double lo, double hi)
+{
     int k = 0;
     Vector<Complex> cv;
-    for (Rank i = 0; i < v.size(); i++) {
+    for (Rank i = 0; i < v.size(); i++)
+    {
         if (lo <= v[i].abs() && v[i].abs() < hi)
             cv.insert(k++, v[i]);
     }
     return cv;
 }
 
-int main() {
+int main()
+{
     double a, b;
     Rank i;
     Vector<Complex> complex(100, 100);
@@ -101,7 +116,7 @@ int main() {
     cout << "去重后的数组" << endl;
     complex.deduplicate();
     complex.print();
-    complex.sort('m');//b为起泡排序，m为归并排序
+    complex.sort('m'); // b为起泡排序，m为归并排序
     auto time_b = 0, time_m = 0;
     time_b = complex.sort('b');
     time_m = complex.sort('m');
